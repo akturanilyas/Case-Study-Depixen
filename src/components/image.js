@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../index.css';
 
 class Image extends React.Component {
     constructor(props) {
@@ -27,14 +28,16 @@ class Image extends React.Component {
 
     imagePreview() {
         return <>
-            <form onSubmit={(e) => this._handleSubmit(e)}>
+            <form >
                 <div>
-                    <input className="fileInput"
+                    <input
                         type="file"
                         ref={this.hiddenFileInput}
                         style={{ display: 'none' }}
                         onChange={(e) => this._handleImageChange(e)} />
-                    <img width="300" src="https://upload.wikimedia.org/wikipedia/commons/3/30/OCR-A_char_Plus_Sign.svg"
+                    <img
+                        className="image"
+                        src="https://pics.freeicons.io/uploads/icons/png/6540698631554126213-512.png"
                         onClick={this.handleClick} />
                 </div>
             </form>
@@ -45,15 +48,17 @@ class Image extends React.Component {
 
         let { imagePreviewUrl } = this.state;
         let $imagePreview = null;
+
         if (imagePreviewUrl) {
-            $imagePreview = (<img src={imagePreviewUrl} />);
+            $imagePreview = <img className="image" src={imagePreviewUrl} />;
         } else {
             $imagePreview = this.imagePreview();
         }
 
         return <>
-            <div>
+            <div >
                 {$imagePreview}
+                <button className={imagePreviewUrl ? "button-enabled" : 'button-disabled'} />
             </div>
         </>
     }

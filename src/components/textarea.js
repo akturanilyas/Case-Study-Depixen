@@ -5,7 +5,7 @@ class Textarea extends Component {
     render() {
         return (
             <div>
-                <textarea rows="15" id="description" placeholder="Write something..." />
+                <textarea id="description" placeholder="New description" />
             </div>
         );
     }
