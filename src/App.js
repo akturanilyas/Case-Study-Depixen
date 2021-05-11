@@ -1,15 +1,12 @@
 import './App.css';
 import './index';
-import Title from './components/title.js';
-import Textarea from './components/textarea.js';
-import Image from './components/image.js';
+import HomePage from './pages/home_page.js'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="container">
-      <Title/>
-      <Textarea />
-      <Image/>
+    <div>
+      <HomePage />
     </div>
   );
 }
