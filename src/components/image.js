@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../index.css';
 import plusImage from '../img/plus.png';
 class Image extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { file: '', imagePreviewUrl: '' };
         this.hiddenFileInput = React.createRef();
     }
 
@@ -20,10 +19,7 @@ class Image extends React.Component {
         let file = e.target.files[0];
 
         reader.onloadend = () => {
-            this.setState({
-                file: file,
-                imagePreviewUrl: reader.result
-            });
+            this.props.changeImageSrc(reader.result);
         }
         reader.readAsDataURL(file)
     }
@@ -41,29 +37,20 @@ class Image extends React.Component {
                     <img
                         className="image"
                         src={plusImage}
-                        onClick={this.handleClick} />
+                        onClick={this.handleClick}
+                        alt={""} />
                 </div>
             </form>
         </>;
     }
-    
-    // Butona basıldığına giris değerlerini result'a aktarır
-    handlerButton = () => {
-        document.getElementById('image').src = this.state.imagePreviewUrl;
-        this.setState({ imagePreviewUrl: '' });
-        document.getElementById('titleText').innerHTML = document.getElementById('title').innerHTML;
-        document.getElementById('title').innerHTML = "New Title";
-        document.getElementById('descriptionText').value = document.getElementById('description').value;
-        document.getElementById('description').value = "";
-    }
 
     render() {
 
-        let { imagePreviewUrl } = this.state;
+        let { imageSrc } = this.props;
         let $imagePreview = null;
 
-        if (imagePreviewUrl) {
-            $imagePreview = <img id="imagePreview" className="image" src={imagePreviewUrl} />;
+        if (imageSrc) {
+            $imagePreview = <img id="imagePreview" className="image" src={imageSrc} alt={""} />;
         } else {
             $imagePreview = this.addImage();
         }
@@ -71,7 +58,6 @@ class Image extends React.Component {
         return <>
             <div >
                 {$imagePreview}
-                <button className={imagePreviewUrl ? "button-enabled" : 'button-disabled'} onClick={() => this.handlerButton()} />
             </div>
         </>
     }
