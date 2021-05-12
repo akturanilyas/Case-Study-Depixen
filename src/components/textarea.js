@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import '../index.css';
 
 class Textarea extends Component {
-    test() {
-
-        let value = document.getElementById('description').value;
-        return value;
-    }
     render() {
         return (
             <div>

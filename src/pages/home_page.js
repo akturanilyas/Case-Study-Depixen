@@ -21,22 +21,20 @@ class HomePage extends Component {
         this.changeTitle = this.changeTitle.bind(this);
         this.changeDescription = this.changeDescription.bind(this);
     }
-
+    // 
     changeTitle = () => {
         this.setState(() => ({ title: "Hello World" }));
-        console.log(this.title);
     };
 
     changeDescription = (value) => {
         this.setState(() => ({ description: value }));
-        console.log(this.state.description);
     };
 
     changeImageSrc = (value) => {
         this.setState(() => ({ imageSrc: value }));
-        console.log(this.state.description);
     };
 
+    // Girilen degerleri sonuc degiskenine aktarır
     changeResult() {
         this.setState({
             resultTitle:this.state.title,
@@ -46,6 +44,7 @@ class HomePage extends Component {
         this.resetState();
     }
 
+    // State'leri baslangıc degerlerine setler
     resetState() {
         this.setState({
             title: "New Title",
@@ -53,7 +52,6 @@ class HomePage extends Component {
             imageSrc: ""
         });
     }
-
 
     render() {
         let enabledBbutton = <button className="button-enabled" onClick={() => this.changeResult()} />;
